@@ -10,7 +10,7 @@ An IoT-powered library system that automates book tracking, shelf management, se
 
 ##
 
-### Overview
+## Overview
 
 The Smart Library consists of three physical subsystems, each built on its own Arduino, unified by an ESP32 that bridges them to the cloud via Wi-Fi. A Streamlit web dashboard provides students and librarians with real-time visibility into book availability, shelf activity, and library occupancy.
 
@@ -22,7 +22,7 @@ The Smart Library consists of three physical subsystems, each built on its own A
 
 **IoT Dashboard**: A multi-page Streamlit web app that polls Google Sheets every 10 seconds, displaying book availability, library occupancy, peak hour analytics, and a password-protected librarian panel with mismatch alerts and detailed shelf logs.
 
-### Architecture
+## Architecture
 
 ```
 ┌─────────────┐    Serial     ┌────────┐    Wi-Fi / HTTP     ┌───────────────┐
@@ -45,7 +45,7 @@ The Smart Library consists of three physical subsystems, each built on its own A
                                           └──────────────┘
 ```
 
-### Project Structure
+## Project Structure
 
 ```
 Smart_Library/
@@ -72,7 +72,7 @@ Smart_Library/
         └── librarian_dashboard.py     # Password-protected admin panel with mismatch alerts
 ```
 
-### Hardware Components
+## Hardware Components
 
 | Component | Qty | Role |
 |-----------|-----|------|
@@ -87,7 +87,7 @@ Smart_Library/
 | LCD Display (I2C) | 2 | Status display for gate and checkout |
 | LEDs (Red + Green) | 2 | Gate open/closed indicators |
 
-### Cloud & Data
+## Cloud & Data
 
 | Google Sheet | Purpose |
 |-------------|---------|
@@ -97,29 +97,29 @@ Smart_Library/
 
 Data flows from Arduinos → ESP32/Python → Google Apps Script webhooks (HTTP POST/GET) → Google Sheets. The Streamlit dashboard pulls from Sheets via CSV export URLs with 10-second auto-refresh.
 
-### Installation & Setup
+## Installation & Setup
 
-#### Prerequisites
+### Prerequisites
 
 - Python 3.x
 - Arduino IDE
 - [CP210x USB Driver](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers) (for ESP32 UART)
 - [Espressif Arduino-ESP32 board package](https://github.com/espressif/arduino-esp32) (add to Arduino IDE)
 
-#### Arduino Libraries (install via Library Manager)
+### Arduino Libraries (install via Library Manager)
 
 - `MFRC522`
 - `LiquidCrystal_I2C`
 - `Servo`
 - `ArduinoJson` (ESP32 only)
 
-#### Python Dependencies
+### Python Dependencies
 
 ```bash
 pip install streamlit streamlit-autorefresh requests pyserial pandas numpy matplotlib plotly
 ```
 
-#### Running the Gate System
+### Running the Gate System
 
 1. Connect the gate Arduino to your computer via USB.
 2. Upload `gatesystem.ino` in Arduino IDE (select the correct COM port).
@@ -132,7 +132,7 @@ python gatesystem.py
 
 > Note: Update `COM_PORT` in `gatesystem.py` to match your system.
 
-#### Running the Smart Shelf & Checkout System
+### Running the Smart Shelf & Checkout System
 
 1. Connect both the shelf and checkout Arduinos to power.
 2. Connect the ESP32 to your computer via the data cable.
@@ -141,7 +141,7 @@ python gatesystem.py
    - Update the `ssid` and `password` in the code to match your Wi-Fi network (must be 2.4 GHz).
 4. Once uploaded, the ESP32 connects to Wi-Fi and begins relaying events to Google Sheets automatically.
 
-#### Running the IoT Dashboard
+### Running the IoT Dashboard
 
 ```bash
 cd Streamlit
@@ -150,12 +150,12 @@ streamlit run dashboard.py
 
 The dashboard opens in your browser. Sub-pages (book availability, library availability, librarian dashboard) are accessible via navigation buttons or the sidebar. Librarian login credentials: `admin` / `1234`.
 
-#### Viewing the Cloud Database
+### Viewing the Cloud Database
 
 - [GateSystemDatabase](https://docs.google.com/spreadsheets/d/16Sxj_9a2VlhHgwZPhsQ5AC0hwujbgwMiR8YOlTME3_w/edit?usp=sharing)
 - [LibraryDatabase](https://docs.google.com/spreadsheets/d/17lmgOYsNALd3Q7lwNWvqmzuSnGsaE6nQch-l9HRbapQ/edit?usp=sharing)
 
-### Book Status Reference
+## Book Status Reference
 
 | Status | Meaning |
 |--------|---------|
