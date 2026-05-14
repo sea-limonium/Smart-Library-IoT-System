@@ -2,13 +2,10 @@
 
 An IoT-powered library system that automates book tracking, shelf management, self-checkout, and occupancy monitoring using Arduino, ESP32, RFID, and infrared sensors, with real-time cloud logging to Google Sheets and a live Streamlit dashboard.
 
-##
-
-### Demo
+## Demo
 
 [YouTube Video](https://youtu.be/sXnw_eqRRkI?si=FbnIAxDYKZOEBER0)
 
-##
 
 ## Overview
 
